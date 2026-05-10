@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: API Personnes
+  version: 1.0.0
+  description: Documentation API Express SQLite
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+
+  /personnes:
+    get:
+      summary: Liste des personnes
+      responses:
+        '200':
+          description: OK
+
+    post:
+      summary: Ajouter personne
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                adresse:
+                  type: string
+      responses:
+        '200':
+          description: Personne ajoutée
+
+  /personnes/{id}:
+    get:
+      summary: Personne par ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+
+    put:
+      summary: Modifier personne
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                adresse:
+                  type: string
+      responses:
+        '200':
+          description: Modifié
+
+    delete:
+      summary: Supprimer personne
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Supprimé
